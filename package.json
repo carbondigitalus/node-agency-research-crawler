@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/carbondigitalus/node-agency-research-crawler/issues"
   },
-  "homepage": "https://github.com/carbondigitalus/node-agency-research-crawler#readme"
+  "homepage": "https://github.com/carbondigitalus/node-agency-research-crawler#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
