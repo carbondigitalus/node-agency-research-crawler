@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/carbondigitalus/node-agency-research-crawler#readme",
   "devDependencies": {
+    "mocha": "^7.0.0",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
