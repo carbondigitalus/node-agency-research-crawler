@@ -1,0 +1,25 @@
+{
+  "name": "lead-gen-crawler",
+  "version": "1.0.0",
+  "description": "Node-based lead gen crawler. Designed for digital agencies, but could be used for anyone.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbondigitalus/node-agency-research-crawler.git"
+  },
+  "keywords": [
+    "node",
+    "lead",
+    "gen",
+    "crawler"
+  ],
+  "author": "Carbon Digital",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carbondigitalus/node-agency-research-crawler/issues"
+  },
+  "homepage": "https://github.com/carbondigitalus/node-agency-research-crawler#readme"
+}
