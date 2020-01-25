@@ -1,4 +1,4 @@
-var Crawler = require("crawler");
+var Crawler = require('crawler');
 
 var c = new Crawler({
   maxConnections: 10,
@@ -10,11 +10,11 @@ var c = new Crawler({
       var $ = res.$;
       // $ is Cheerio by default
       //a lean implementation of core jQuery designed specifically for the server
-      console.log($("title").text());
+      console.log($('title').text());
     }
     done();
   }
 });
 
 // Queue just one URL, with default callback
-c.queue("https://www.facebook.com/jared.ledbetter");
+c.queue('https://www.facebook.com/jared.ledbetter');
