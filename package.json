@@ -24,5 +24,8 @@
   "homepage": "https://github.com/carbondigitalus/node-agency-research-crawler#readme",
   "devDependencies": {
     "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "crawler": "^1.2.1"
   }
 }
