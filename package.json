@@ -40,6 +40,7 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "crawler": "^1.2.1",
     "request": "^2.88.0"
   }
