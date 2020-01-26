@@ -1,35 +1,45 @@
-var express = require('express');
-var fs = require('fs');
-var request = require('request');
-var cheerio = require('cheerio');
-var app = express();
+// Node Modules
+const fs = require('fs');
+let url = require('url');
+
+// NPM Modules
+const express = require('express');
+const request = require('request');
+const cheerio = require('cheerio');
+
+// Active Express App
+const app = express();
+
+// Delare variables
+let userName;
+let profileURL;
+let datePosted;
+let postContent;
+const json = {
+  userName: '',
+  profileURL: '',
+  datePosted: '',
+  postContent: ''
+};
 
 app.get('/scrape', function(req, res) {
-  url = 'https://www.imdb.com/title/tt1229340/';
+  url = 'https://www.facebook.com/search/top/?q=web%20design';
 
   request(url, function(error, response, html) {
     if (!error) {
-      var $ = cheerio.load(html);
+      const $ = cheerio.load(html);
 
-      var title, release, rating;
-      var json = { title: '', release: '', rating: '' };
-
-      $('.title_wrapper h1').filter(function() {
-        var data = $(this);
-        title = data.text();
-        json.title = title;
-      });
-
-      $('#titleYear a').filter(function() {
-        var data = $(this);
-        release = data.text();
-        json.release = release;
-      });
-      $('.ratingValue span[itemprop="ratingValue"]').filter(function() {
-        var data = $(this);
-        rating = data.text();
-
-        json.rating = rating;
+      $('.browse_result_area ._401d ._19_p ._401d').filter(function() {
+        const data = $(this);
+        userName = data.find('._7gyi').text();
+        json.userName = userName;
+        profileURL = data.find('._7gyi').attr('href');
+        json.profileURL = profileURL;
+        datePosted = data.find('._6-cp ._6-cm a').val();
+        json.datePosted = datePosted;
+        postContent = data.find('._6-cp').val();
+        json.postContent = postContent;
+        return json;
       });
     }
 
@@ -52,4 +62,4 @@ app.get('/scrape', function(req, res) {
 
 app.listen('8081');
 console.log('Magic happens on port 8081');
-exports = module.exports = app;
+module.exports.app = app;

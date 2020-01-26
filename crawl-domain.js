@@ -1,30 +1,30 @@
 // core modules
-var fs = require('fs');
-var url = require('url');
+// const fs = require('fs');
+const url = require('url');
 
 // third party modules
-var _ = require('lodash');
-var async = require('async');
-var cheerio = require('cheerio');
-var request = require('request');
+const _ = require('lodash');
+const async = require('async');
+const cheerio = require('cheerio');
+const request = require('request');
 
-var base = 'carbondigital.us';
-var firstLink = 'https://' + base;
+const base = 'carbondigital.us';
+const firstLink = `https://${base}`;
 
-var crawled = [];
-var inboundLinks = [];
+const crawled = [];
+const inboundLinks = [];
 
-var makeRequest = function(crawlUrl, callback) {
-  var startTime = new Date().getTime();
+const makeRequest = function(crawlUrl, callback) {
+  const startTime = new Date().getTime();
   request(crawlUrl, function(error, response, body) {
-    var pageObject = {};
+    const pageObject = {};
     pageObject.links = [];
 
-    var endTime = new Date().getTime();
-    var requestTime = endTime - startTime;
+    const endTime = new Date().getTime();
+    const requestTime = endTime - startTime;
     pageObject.requestTime = requestTime;
 
-    var $ = cheerio.load(body);
+    const $ = cheerio.load(body);
     pageObject.title = $('title').text();
     pageObject.url = crawlUrl;
     $('a').each(function(i, elem) {
@@ -43,16 +43,16 @@ var makeRequest = function(crawlUrl, callback) {
   });
 };
 
-var myLoop = function(link) {
+const myLoop = function(link) {
   makeRequest(link, function(error, pageObject) {
     console.log(pageObject);
     crawled.push(pageObject.url);
     async.eachSeries(
       pageObject.links,
       function(item, cb) {
-        parsedUrl = url.parse(item.linkUrl);
+        const parsedUrl = url.URL(item.linkUrl);
         // test if the url actually points to the same domain
-        if (parsedUrl.hostname == base) {
+        if (parsedUrl.hostname === base) {
           /*
          insert some further link error checking here
         */
@@ -61,7 +61,7 @@ var myLoop = function(link) {
         cb();
       },
       function() {
-        var nextLink = _.difference(_.uniq(inboundLinks), crawled);
+        const nextLink = _.difference(_.uniq(inboundLinks), crawled);
         if (nextLink.length > 0) {
           myLoop(nextLink[0]);
         } else {
