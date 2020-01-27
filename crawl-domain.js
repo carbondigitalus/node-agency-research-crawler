@@ -1,6 +1,6 @@
 // core modules
 const fs = require('fs');
-const url = require('url');
+// const url = require('url');
 
 // third party modules
 const _ = require('lodash');
