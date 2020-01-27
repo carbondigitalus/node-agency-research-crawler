@@ -4,7 +4,7 @@
   "description": "Node-based lead gen crawler. Designed for digital agencies, but could be used for anyone.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node crawl-domain.js"
   },
   "repository": {
     "type": "git",
